@@ -7,7 +7,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/xjxj4567/protoc-gen-dart-http/internal/strs"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
@@ -35,13 +34,6 @@ func generateFile(gen *protogen.Plugin, file *protogen.File, omitempty bool, omi
 	} else {
 		g.P("// source: ", file.Desc.Path())
 	}
-	g.P()
-	g.P("import Foundation")
-	g.P("import Logging")
-	g.P("import RealHTTP")
-	g.P("import SwiftProtobuf")
-	g.P("import TheRouter")
-	g.P()
 	generateFileContent(gen, file, g, omitempty, omitemptyPrefix)
 	return g
 }
@@ -212,8 +204,8 @@ func buildMethodDesc(g *protogen.GeneratedFile, file *protogen.File, service *pr
 		Name:         lowerFirst(camelCase(m.GoName)),
 		OriginalName: string(m.Desc.Name()),
 		Num:          methodSets[m.GoName],
-		Request:      QualifiedGoIdent(m.Input.GoIdent),
-		Reply:        QualifiedGoIdent(m.Output.GoIdent),
+		Request:      m.Input.GoIdent.GoName,
+		Reply:        m.Output.GoIdent.GoName,
 		Comment:      comment,
 		Path:         path,
 		Method:       method,
@@ -370,7 +362,7 @@ func QualifiedGoIdent(ident protogen.GoIdent) string {
 
 // cleanPackageName converts a string to a valid Go package name.
 func cleanPackageName(name string) protogen.GoPackageName {
-	return protogen.GoPackageName(strs.GoSanitized(name))
+	return protogen.GoPackageName(name)
 }
 
 func lowerFirst(s string) string {
