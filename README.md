@@ -1,3 +1,3 @@
-# protoc-gen-swift-http
+# protoc-gen-dart-http
 
-A protoc plugin for generate swift code of http client.
+A protoc plugin for generate dart code of http client.
