@@ -1,4 +1,4 @@
-module github.com/go-bamboo/protoc-gen-swift-http
+module github.com/xjxj4567/protoc-gen-dart-http
 
 go 1.19
 

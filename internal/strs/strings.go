@@ -11,7 +11,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/go-bamboo/protoc-gen-swift-http/internal/flags"
+	"github.com/xjxj4567/protoc-gen-dart-http/internal/flags"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
